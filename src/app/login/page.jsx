@@ -1,6 +1,5 @@
 "use client"
 import axios from 'axios';
-import { type } from 'os';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
@@ -54,7 +53,7 @@ const SignUpForm = () => {
               </div>
               <button onClick={handleSubmit} type="submit" className="w-full text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don't have an account? <a href="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Getsignup</a>
+                Dont have an account? <a href="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Getsignup</a>
               </p>
             </form>
           </div>
