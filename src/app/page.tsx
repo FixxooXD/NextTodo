@@ -1,7 +1,7 @@
 "use client"
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation"
 
-export default function home(){
+export default function Home(){
   const router = useRouter();
   return(
     <div className="landing-page">
@@ -12,11 +12,11 @@ export default function home(){
           <p className="text-xl text-white mt-4">
             Track your progress, stay motivated, and achieve your daily goals with Next Todo.
           </p>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-md mt-8" onClick={()=> router.push("/signup")}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-md mt-8" onClick={() => router.push("/signup")}>
             Get Started
           </button>
         </div>
       </section>
-      </div>
+      </div>  
   )
 }
