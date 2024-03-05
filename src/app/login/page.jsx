@@ -3,10 +3,14 @@ import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import Footer from "@/components/Footer";
+
 
 const SignUpForm = () => {
   
   const router = useRouter();
+  //Top Loading Bar
+  const [processing, setProcessing] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const [user, setUser] = React.useState({
     email: "",
@@ -15,20 +19,24 @@ const SignUpForm = () => {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowPassword(true);
      try {
      const response = await axios.post("/api/users/login", user);
      console.log(response.data);
      toast.success("Login Success")
+     setProcessing(false)
      router.push("/dashboard")
      } catch (error) {
       console.log(error);
+      setProcessing(false)
       toast.error("Something went wrong: " + error.response.data.error + "!!")
      }
   }
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-        
+    <>
+    <section className="bg-gray-50 dark:bg-gray-900 flex flex-col h-screen">
+      <div className='w-full text-end' >{processing ? <p>Logging...</p> : null}</div>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto sm:w-[28rem] h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-[25rem] xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-5 space-y-4 md:space-y-6 ">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white">
@@ -51,7 +59,7 @@ const SignUpForm = () => {
                   <p className="font-medium text-primary-600 dark:text-primary-500" href="#">Show Password</p>
                 </div>
               </div>
-              <button onClick={handleSubmit} type="submit" className="w-full text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+              <button disabled={!user.email || !user.password ? true : false} onClick={handleSubmit} type="submit" className="w-full text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don&apos;t have an account? <a onClick={()=> router.push('/signup')} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Getsignup</a>
               </p>
@@ -59,7 +67,9 @@ const SignUpForm = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
+    </>
   );
 };
 

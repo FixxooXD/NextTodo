@@ -1,5 +1,7 @@
 "use client"
 
+import Footer from "@/components/Footer";
+
 export default function Dashboard() {
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
@@ -8,7 +10,7 @@ export default function Dashboard() {
         <button className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
       </header>
       <main className="flex flex-col flex-grow px-6 py-8 space-y-8">
-        <section className="flex flex-cols justify-between items-center">
+        <section className="flex flex-cols items-center">
         <div>
           <div className="text-lg font-bold text-gray-900 dark:text-white">Home</div>
           <div>Profile</div>
@@ -21,6 +23,7 @@ export default function Dashboard() {
           {/* Individual todo items will be inserted here dynamically */}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
