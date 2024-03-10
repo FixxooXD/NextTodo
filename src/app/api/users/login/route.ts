@@ -18,7 +18,7 @@ export async function POST(request: NextRequest){
          return NextResponse.json({error: "User Not Found"}, {status: 400});
         }
 
-        console.log(user);
+        console.log();
         
         // check if Password is correct 
         const validPassword = await bcryptjs.compare(password, user.password);
@@ -36,7 +36,6 @@ export async function POST(request: NextRequest){
 
         const response = await NextResponse.json({
             "message": "Login Success",
-            "Status": "success"
         })
 
        response.cookies.set("token", token, {httpOnly: true})
